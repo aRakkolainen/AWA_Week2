@@ -6,3 +6,7 @@ app.get('/hello', (req, res) => {
 })
 
 app.listen(port, () => console.log("Server is listening to a port: "+port));
+
+app.get('/echo/:id', (req, res) => {
+    res.send({"id": req.params.id})
+})
