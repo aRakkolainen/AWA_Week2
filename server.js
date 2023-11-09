@@ -7,24 +7,37 @@ app.get('/hello', (req, res) => {
     res.send({"msg":"Hello world"});
 })
 
-app.listen(port, () => console.log("Server is listening to a port: "+port));
-
 app.get('/echo/:id', (req, res) => {
     res.send({"id": req.params.id})
 })
-
-router.post('/sum', (req, res) => {
+app.use(express.json());
+app.post('/sum', function (req, res) {
     let sum =0;
-    let numbers = req.body.route.numbers
+    //let numbers = req.body
+    console.log("Receiving post request")
+    console.log(req.route)
     //console.log(req.body.route.numbers)
     //console.log(numbers)
-    numbers.array.forEach(number => {
-        sum += number;
-    });
-    res.send({"sum": sum});
+    //numbers.array.forEach(number => {
+      //  sum += number;
+    //});
+    //res.send({"sum": sum});
     })
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
 
 })
+let list = []; 
+
+app.post("/list", (req, res) => {
+    list.push(req.body)
+    res.send(list)
+})
+//app.listen(port, () => console.log("Server is listening to a port: "+port));
+app.listen(port, function(err) {
+    if (err) console.log(err);
+    console.log("Server is listening to a port", port);
+});
+
+module.exports = router
