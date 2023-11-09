@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 const router = express.Router(); 
 const port = 3000; 
 app.get('/hello', (req, res) => {
@@ -22,3 +23,8 @@ router.post('/sum', (req, res) => {
     });
     res.send({"sum": sum});
     })
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (req, res) => {
+
+})
