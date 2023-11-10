@@ -12,22 +12,21 @@ app.get('/echo/:id', (req, res) => {
 })
 app.use(express.json());
 app.post("/sum", (req, res) => {
-    
+    let sum=0; 
+    let numbers = req.body.numbers; 
+    numbers.forEach(number => {
+        sum += number;        
+    });
+    res.send({"sum": sum})
 })
 
-app.use(express.static(path.join(__dirname, "public")));
-/*const routes = require("./routes.js"); 
-app.use("/", routes);*/ 
+app.use(express.static(path.join(__dirname, "public"))); 
 
 app.post("/list", (req, res) => {
     if (req.body.text != "null") {
         list.push(req.body.text)
         res.send({"list": list})
     }
-    //console.log(req.body.text)
-    //list.push(req.body.text)
-    //console.log(list)
-    //res.send(list)
 })
 
 
