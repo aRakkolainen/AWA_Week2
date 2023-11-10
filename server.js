@@ -20,9 +20,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", routes);*/ 
 
 app.post("/list", (req, res) => {
-    if (req.body.text != "undefined") {
+    if (req.body.text != "null") {
         list.push(req.body.text)
-        res.send(list)
+        res.send({"list": list})
     }
     //console.log(req.body.text)
     //list.push(req.body.text)
